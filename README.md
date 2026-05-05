@@ -83,6 +83,13 @@ ghc Main.hs -o crud
 ./crud
 ```
 
+or
+
+```bash
+cd Num_guessing_game
+runghc Main.hs
+```
+
 #### Features
 
 - `create` – add an item
@@ -99,6 +106,13 @@ ghc Main.hs -o crud
 cd Hangman
 ghc Main.hs -o hangman
 ./hangman
+```
+
+or
+
+```bash
+cd Num_guessing_game
+runghc Main.hs
 ```
 
 > **Note:** `word.txt` must be present in the `Hangman/` directory. The game reads words from this file — one word per line.
@@ -119,6 +133,13 @@ ghc Main.hs -o hangman
 cd Num_guessing_game
 ghc Main.hs -o guess
 ./guess
+```
+
+or
+
+```bash
+cd Num_guessing_game
+runghc Main.hs
 ```
 
 #### Features

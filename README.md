@@ -1,11 +1,12 @@
-# Haskell CLI & GUI Applications
+# Haskell CLI, GUI & Web Applications
 
-This repository contains four separate programs written in Haskell:
+This repository contains five separate programs written in Haskell:
 
 - **2Dgame** – A 2D side-scrolling platformer with coins and camera scrolling
 - **Crud_cli** – CRUD operations on an in-memory list
 - **Hangman** – Terminal word guessing game
 - **Num_guessing_game** – Number guessing game
+- **web** – A Yesod web application backed by SQLite
 
 Each project is self-contained in its own folder.
 
@@ -26,8 +27,20 @@ forfun/
 ├── Hangman/
 │   ├── Main.hs
 │   └── word.txt
-└── Num_guessing_game/
-    └── Main.hs
+├── Num_guessing_game/
+│   └── Main.hs
+└── web/
+    ├── app/
+    ├── src/
+    ├── templates/
+    ├── static/
+    ├── config/
+    ├── test/
+    ├── package.yaml
+    ├── stack.yaml
+    ├── stack.yaml.lock
+    ├── web.cabal
+    └── web.sqlite3
 ```
 
 ---
@@ -36,7 +49,9 @@ forfun/
 
 - **GHC** (Glasgow Haskell Compiler) — https://www.haskell.org/ghc/
 - **Cabal** (for the 2Dgame project) — https://www.haskell.org/cabal/
+- **Stack** (for the web project) — https://docs.haskellstack.org/
 - **Gloss** (graphics library, installed automatically via Cabal for 2Dgame)
+- **Yesod** + **SQLite** (installed automatically via Stack for the web project)
 
 ---
 
@@ -83,13 +98,6 @@ ghc Main.hs -o crud
 ./crud
 ```
 
-or
-
-```bash
-cd Num_guessing_game
-runghc Main.hs
-```
-
 #### Features
 
 - `create` – add an item
@@ -106,13 +114,6 @@ runghc Main.hs
 cd Hangman
 ghc Main.hs -o hangman
 ./hangman
-```
-
-or
-
-```bash
-cd Num_guessing_game
-runghc Main.hs
 ```
 
 > **Note:** `word.txt` must be present in the `Hangman/` directory. The game reads words from this file — one word per line.
@@ -135,13 +136,6 @@ ghc Main.hs -o guess
 ./guess
 ```
 
-or
-
-```bash
-cd Num_guessing_game
-runghc Main.hs
-```
-
 #### Features
 
 - Random number between 1 and 100
@@ -150,9 +144,55 @@ runghc Main.hs
 
 ---
 
+### Run Yesod Web App
+
+The `web` project uses [Stack](https://docs.haskellstack.org/) and the [Yesod](https://www.yesodweb.com/) framework with a SQLite database.
+
+#### First-time setup
+
+```bash
+cd web
+
+# Install Stack if not already installed
+curl -sSL https://get.haskellstack.org/ | sh
+
+# Build the project and fetch all dependencies (takes a while on first run)
+stack build
+```
+
+#### Run in development mode
+
+```bash
+stack exec -- yesod devel
+```
+
+The app will be available at `http://localhost:3000`. Yesod will automatically recompile and reload on file changes.
+
+#### Run in production mode
+
+```bash
+stack build
+stack exec web
+```
+
+#### Database
+
+The app uses SQLite. The database file (`web.sqlite3`) is created automatically in the `web/` directory on first run. No manual setup is required.
+
+#### Features
+
+- Full-stack Haskell web application
+- Type-safe routing via Yesod
+- Persistent SQLite storage via Persistent library
+- Server-side HTML rendering with Hamlet templates
+- Static file serving from the `static/` directory
+
+---
+
 ## Notes
 
 - All CLI programs (`Crud_cli`, `Hangman`, `Num_guessing_game`) run in the terminal and require only GHC
 - `2Dgame` opens a graphical window and requires Cabal + the Gloss library
-- No data persistence across sessions (in-memory only)
+- `web` requires Stack and runs a local HTTP server; the SQLite database persists between sessions
+- CLI projects have no data persistence (in-memory only)
 - Some inputs are not fully validated and may cause runtime errors

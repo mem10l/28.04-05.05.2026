@@ -9,19 +9,13 @@ import Import
 import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
 import Text.Julius (RawJS (..))
 
--- Define our data that will be used for creating the form.
+-- 1. Define the Data Type FIRST
 data FileForm = FileForm
     { fileInfo :: FileInfo
     , fileDescription :: Text
     }
 
--- This is a handler function for the GET request method on the HomeR
--- resource pattern. All of your resource patterns are defined in
--- config/routes.yesodroutes
---
--- The majority of the code you will write in Yesod lives in these handler
--- functions. You can spread them across multiple files if you are so
--- inclined, or create a single monolithic file.
+-- 2. Define the Handler
 getHomeR :: Handler Html
 getHomeR = do
     (formWidget, formEnctype) <- generateFormPost sampleForm
@@ -30,9 +24,13 @@ getHomeR = do
     allComments <- runDB $ getAllComments
 
     defaultLayout $ do
+        -- 1. Define IDs and Identifiers here
         let (commentFormId, commentTextareaId, commentListId) = commentIds
-        aDomId <- newIdent
-        setTitle "Welcome To Yesod!"
+        aDomId <- newIdent  -- This must stay inside the 'do' block
+        
+        setTitle "VibeArch - Music"
+        
+        -- 2. NOW call the widget
         $(widgetFile "homepage")
 
 postHomeR :: Handler Html
@@ -46,25 +44,16 @@ postHomeR = do
 
     defaultLayout $ do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
-        aDomId <- newIdent
-        setTitle "Welcome To Yesod!"
+        aDomId <- newIdent -- Ensure it's here too
+        
+        setTitle "VibeArch - Music"
         $(widgetFile "homepage")
 
+-- 4. The rest of the helper functions
 sampleForm :: Form FileForm
 sampleForm = renderBootstrap3 BootstrapBasicForm $ FileForm
     <$> fileAFormReq "Choose a file"
-    <*> areq textField textSettings Nothing
-    -- Add attributes like the placeholder and CSS classes.
-    where textSettings = FieldSettings
-            { fsLabel = "What's on the file?"
-            , fsTooltip = Nothing
-            , fsId = Nothing
-            , fsName = Nothing
-            , fsAttrs =
-                [ ("class", "form-control")
-                , ("placeholder", "File description")
-                ]
-            }
+    <*> areq textField "What's on the file?" Nothing
 
 commentIds :: (Text, Text, Text)
 commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")

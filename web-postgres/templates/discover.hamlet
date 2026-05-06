@@ -1,2 +1,15 @@
-<h1>Discover New Music
-<p>Explore the latest tracks synced from your Postgres database.
+<div .container>
+    <h1 .page-title>Discover New Sounds
+    <div .grid-container>
+        $forall (title, genre) <- newReleases
+            <div .music-card>
+                <div .placeholder-img>
+                <h3>#{title}
+                <p .genre-text>#{genre}
+                
+                $# The Add Button Form
+                <form method=post action=@{LibraryR}>
+                    <input type=hidden name=_token value=#{tokenTicket}>
+                    <input type=hidden name=track value=#{title}>
+                    <input type=hidden name=artist value="Various Artists">
+                    <button .btn-add>Add to Library

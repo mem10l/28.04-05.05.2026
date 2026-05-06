@@ -16,3 +16,9 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
     userId UserId Maybe
     deriving Eq
     deriving Show
+-- config/models
+LibraryItem
+    userId UserId
+    trackName Text
+    artistName Text
+    UniqueLibraryItem userId trackName artistName -- Prevents duplicates

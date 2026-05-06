@@ -1,2 +1,6 @@
-<h1>Artists
-<p>List of all artists registered on VibeArch.
+<div .container>
+    <h1>Featured Artists
+    <ul .list-group>
+        $forall artist <- artists
+            <li .list-group-item>
+                <a href="#">#{artist}

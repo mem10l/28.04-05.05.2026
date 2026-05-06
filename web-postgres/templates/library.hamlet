@@ -1,2 +1,26 @@
-<h1>Your Library
-<p>Your saved tracks and playlists live here.
+<div .container>
+    <div .row>
+        <div .col-md-12>
+            <h1 .page-header>Your Collection
+            
+            $if null userTracks
+                <div .alert.alert-info>
+                    <p>Your library is currently empty. 
+                    <a href=@{DiscoverR}>Go to Discover to find music!
+            $else
+                <div .panel.panel-default>
+                    <div .panel-heading>
+                        <h3 .panel-title>Saved Tracks
+                    <ul .list-group>
+                        $# Change the underscore '_' to 'itemId' right here:
+                        $forall Entity itemId item <- userTracks
+                            <li .list-group-item.display-flex.justify-between>
+                                <div>
+                                    <strong>#{libraryItemTrackName item}
+                                    <span .text-muted> – #{libraryItemArtistName item}
+                                
+                                $# Now itemId is back in scope for this link:
+                                <form method=post action=@{DeleteTrackR itemId}>
+                                    <input type=hidden name=_token value=#{tokenTicket}>
+                                    <button .btn.btn-xs.btn-danger type=submit>
+                                        Remove

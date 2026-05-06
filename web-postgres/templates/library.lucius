@@ -1,0 +1,25 @@
+.display-flex {
+    display: flex;
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.list-group-item {
+    background-color: #1a1a2e; /* Dark theme matching your music vibe */
+    color: #e94560;
+    border: 1px solid #16213e;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.list-group-item:hover {
+    background-color: #16213e;
+}
+
+.text-muted {
+    color: #95a5a6 !important;
+    margin-left: 10px;
+}

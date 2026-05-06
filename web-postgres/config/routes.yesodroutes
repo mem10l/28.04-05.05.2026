@@ -17,4 +17,6 @@
 
 /artists  ArtistsR  GET
 
-/library  LibraryR  GET
+/library LibraryR GET POST
+
+/library/delete/#LibraryItemId DeleteTrackR POST

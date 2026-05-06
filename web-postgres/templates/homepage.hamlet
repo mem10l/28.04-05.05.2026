@@ -5,8 +5,7 @@
             <h1>Music for the Modern Listener
             <p>Experience high-fidelity streaming powered by Haskell and Postgres.
             <div .hero-buttons>
-                <a .btn-primary href="#">Start Listening
-                <a .btn-secondary href="#">Browse Genres
+                <a .btn-primary href="discover">Start Listening
 
     <section .trending-grid>
         <h2>Trending Now

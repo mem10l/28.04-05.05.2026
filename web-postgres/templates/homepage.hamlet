@@ -1,0 +1,33 @@
+<div .hero-container>
+    <nav .navbar>
+        <div .logo>VibeArch
+        <ul .nav-links>
+            <li><a href=@{HomeR}>Home
+            <li><a href="#">Discover
+            <li><a href="#">Artists
+            <li><a href="#">Library
+
+    <section .hero-content>
+        <div .hero-text>
+            <h1>Music for the Modern Listener
+            <p>Experience high-fidelity streaming powered by Haskell and Postgres.
+            <div .hero-buttons>
+                <a .btn-primary href="#">Start Listening
+                <a .btn-secondary href="#">Browse Genres
+
+    <section .trending-grid>
+        <h2>Trending Now
+        <div .cards-container>
+            $# This is a placeholder loop. In a real app, you'd pull this from Postgres.
+            <div .card>
+                <div .card-img>
+                <p .card-title>Neon Nights
+                <p .card-subtitle>Synthwave
+            <div .card>
+                <div .card-img>
+                <p .card-title>Arch Bliss
+                <p .card-subtitle>Ambient
+            <div .card>
+                <div .card-img>
+                <p .card-title>Strictly Typed
+                <p .card-subtitle>Techno

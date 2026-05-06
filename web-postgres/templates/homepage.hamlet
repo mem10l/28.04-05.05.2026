@@ -1,11 +1,4 @@
 <div .hero-container>
-    <nav .navbar>
-        <div .logo>VibeArch
-        <ul .nav-links>
-            <li><a href=@{HomeR}>Home
-            <li><a href="#">Discover
-            <li><a href="#">Artists
-            <li><a href="#">Library
 
     <section .hero-content>
         <div .hero-text>

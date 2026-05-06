@@ -12,3 +12,9 @@
 /comments CommentR POST
 
 /profile ProfileR GET
+
+/discover DiscoverR GET
+
+/artists  ArtistsR  GET
+
+/library  LibraryR  GET

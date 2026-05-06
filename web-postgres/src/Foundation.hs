@@ -110,10 +110,26 @@ instance Yesod App where
         (title, parents) <- breadcrumbs
 
         -- Define the menu items of the header.
+        -- Inside src/Foundation.hs, find the menuItems list
         let menuItems =
                 [ NavbarLeft $ MenuItem
                     { menuItemLabel = "Home"
                     , menuItemRoute = HomeR
+                    , menuItemAccessCallback = True
+                    }
+                , NavbarLeft $ MenuItem
+                    { menuItemLabel = "Discover"
+                    , menuItemRoute = DiscoverR
+                    , menuItemAccessCallback = True
+                    }
+                , NavbarLeft $ MenuItem
+                    { menuItemLabel = "Artists"
+                    , menuItemRoute = ArtistsR
+                    , menuItemAccessCallback = True
+                    }
+                , NavbarLeft $ MenuItem
+                    { menuItemLabel = "Library"
+                    , menuItemRoute = LibraryR
                     , menuItemAccessCallback = True
                     }
                 , NavbarLeft $ MenuItem
@@ -132,7 +148,7 @@ instance Yesod App where
                     , menuItemAccessCallback = isJust muser
                     }
                 ]
-
+                
         let navbarLeftMenuItems = [x | NavbarLeft x <- menuItems]
         let navbarRightMenuItems = [x | NavbarRight x <- menuItems]
 
@@ -168,6 +184,9 @@ instance Yesod App where
     isAuthorized FaviconR _ = return Authorized
     isAuthorized RobotsR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
+    isAuthorized DiscoverR _ = return Authorized
+    isAuthorized ArtistsR _ = return Authorized
+    isAuthorized LibraryR _ = return Authorized
 
     -- the profile route requires that the user is authenticated, so we
     -- delegate to that function
